@@ -32,13 +32,13 @@ async function fetchAndShowResult(url) {
 // Create movie card html template
 function createMovieCard(movie) {
     const { poster_path, original_title, release_date, overview } = movie;
-    const imagePath = poster_path ? imgApi + poster_path : "./img-01.jpeg";
+    const imagePath = poster_path ? imgApi + poster_path : "loader.gif";
     const truncatedTitle = original_title.length > 15 ? original_title.slice(0, 15) + "..." : original_title;
     const formattedDate = release_date || "No release date";
     const cardTemplate = `
         <div class="column">
             <div class="card">
-                <a class="card-media" href="./img-01.jpeg">
+                <a class="card-media" href="fallback.gif">
                     <img src="${imagePath}" alt="${original_title}" width="100%" />
                 </a>
                 <div class="card-content">
@@ -105,6 +105,7 @@ async function handleSearch(e) {
     }
 }
 
+// Clear search results and reset page to show popular movies
 function clearSearch() {
     page = 1;
     isSearching = false;
@@ -113,6 +114,7 @@ function clearSearch() {
     init();
 }
 
+// Add event listener to "Go Back" button
 document.querySelector('.back-btn').addEventListener('click', clearSearch);
 
 // Event listeners
@@ -131,7 +133,22 @@ async function init() {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${page}`;
     isSearching = false;
     await fetchAndShowResult(url);
-    document.body.classList.remove('searching');
+    document.body.classList.remove('searching'); // Remove the 'searching' class from the body element
 }
 
-init();
+init(); // Call the init function to initialize the page
+
+//Back to top
+const backToTopButton = document.querySelector(".back-to-top-btn");
+
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 100) {
+    backToTopButton.classList.add("show");
+  } else {
+    backToTopButton.classList.remove("show");
+  }
+});
+
+backToTopButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
