@@ -7,18 +7,26 @@
     box-sizing: border-box;
 }
 
+:root{
+    --primary-color: #ee4cf3;
+    --secondary-color: #ffca28;
+    --tertiary-color: #11EFE6;
+    --text-color: #131313;
+    --bg-color: #fff;
+}
+
 h1{
-    color: #11EFE6;
+    color: var(--tertiary-color);
 }
 
 a{
-    color: #fff;
+    color: var(--bg-color);
     text-decoration: none;
 }
 
 body{
-    color: #333;
-    background-color: #f5f5f5;
+    color: var(--bg-color);
+    background-color: var(--bg-color);
     padding: 1.5rem;
 }
 
@@ -48,21 +56,41 @@ body{
 
 .search-box .search-btn{
     width: 120px;
-    background-color: #ee4cf3;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
     font-weight: 600;
     cursor: pointer;
     padding: 6px 8px;
-    border: 1px solid #11EFE6;
+    border: 1px solid var(--primary-color);
     border-radius: 0 0.4rem 0.4rem 0;
     transition: all 0.5s ease;
 }
 
 .search-box .search-btn:hover{
-    background-color: #11EFE6;
-    border: 1px solid #11EFE6;
-    color: white;
+    transition: 1.5s;
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
+    color: var(--bg-color);
 }
+.back-btn{
+    width: 120px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius:  0.4rem 0 0 0.4rem ;  
+    transition: all 0.5s ease;
+}
+
+.back-btn:hover{
+    transition: 1.5s;
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
+    color: var(--bg-color);
+}
+
 
 .container{
     width: 100%;
@@ -75,7 +103,7 @@ body{
 .container .card{
     position: relative;
     font-size: 14px;
-    border: 1px solid #ddd;
+    border: 1px solid none;
     border-radius: 0.4rem;
     line-height: 20px;
     width: 285px;
@@ -90,7 +118,7 @@ body{
     bottom: 0;
     left: 0;
     padding: 100px 10px 5px;
-    background-image: linear-gradient(180deg, rgba(51, 55, 69, 0), rgba(16, 21, 40, 0.95));
+    background-image: linear-gradient(180deg, rgba(5, 59, 255, 0), rgba(16, 21, 40, 0.95));
     transition: all 0.5s ease;
 }
 
@@ -102,11 +130,11 @@ body{
 }
 
 .container .card .card-content .card-btn{
-    background-color: #ee4cf3;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
     cursor: pointer;
     padding: 6px 8px;
-    border: 1px solid #ffca28;
+    border: 1px solid none;
     border-radius: 0.4rem;
     transition: all 0.5s ease;
 }
@@ -121,17 +149,17 @@ body{
 
 .container .card:hover{
     cursor: pointer;
-        border: 1px solid #ffca28;
-
+        border: 1px solid none;
 }
 
 .container .card:hover .card-content{
-    background-image: linear-gradient(180deg, rgba(51, 55, 69, 0), #ffca28 80%);
+    background-image: linear-gradient(180deg, rgba(51, 55, 69, 0), rgb(255, 170, 34) 80%);
 }
 
 .container .card:hover .card-btn{
-    background-color: #11EFE6;
-    border-color: #11EFE6;
+    transition: 1.5s;
+    background-color: var(--tertiary-color);
+    border-color: none;
 }
 
 .container .card:hover .info{

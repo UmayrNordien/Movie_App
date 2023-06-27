@@ -45,7 +45,7 @@ function createMovieCard(movie) {
                     <div class="card-header">
                         <div class="left-content">
                         <h3 style="font-weight: 600">${truncatedTitle}</h3>
-                        <span style="color: #12efec; font-weight: 600">${formattedDate}</span>
+                        <span style="color: var(--tertiary-color); font-weight: 600">${formattedDate}</span>
                         </div>
                     <div class="right-content">
                         <a href="${imagePath}" target="_blank" class="card-btn">See Cover</a>
@@ -101,11 +101,27 @@ async function handleSearch(e) {
         const newUrl = `${searchUrl}${searchTerm}&page=${page}`;
         await fetchAndShowResult(newUrl);
         query.value = "";
+        document.body.classList.add('searching');
     }
 }
 
+function clearSearch() {
+    page = 1;
+    isSearching = false;
+    document.body.classList.remove('searching');
+    clearResults();
+    init();
+}
+
+document.querySelector('.back-btn').addEventListener('click', clearSearch);
+
 // Event listeners
 form.addEventListener('submit', handleSearch);
+query.addEventListener('keydown', function (event) {
+    if (event.key === "Enter") {
+        handleSearch(event);
+    }
+});
 window.addEventListener('scroll', detectEnd);
 window.addEventListener('resize', detectEnd);
 
@@ -115,6 +131,7 @@ async function init() {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${page}`;
     isSearching = false;
     await fetchAndShowResult(url);
+    document.body.classList.remove('searching');
 }
 
 init();
