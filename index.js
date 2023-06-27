@@ -1,4 +1,4 @@
-const apiKey = "bb54f7b2b7df1fb3997388d5d115ba52";
+const apiKey = "bb54f7b2b7df1fb3997388d5d115ba52"; /* temporary key */
 const imgApi = "https://image.tmdb.org/t/p/w1280";
 const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
 const form = document.getElementById("search-form");
@@ -13,7 +13,7 @@ async function fetchData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error("Network response was not ok.");
+            throw new Error("Network response error");
         }
         return await response.json();
     } catch (error) {
@@ -45,7 +45,7 @@ function createMovieCard(movie) {
                     <div class="card-header">
                         <div class="left-content">
                         <h3 style="font-weight: 600">${truncatedTitle}</h3>
-                        <span style="color: #12efec">${formattedDate}</span>
+                        <span style="color: #12efec; font-weight: 600">${formattedDate}</span>
                         </div>
                     <div class="right-content">
                         <a href="${imagePath}" target="_blank" class="card-btn">See Cover</a>

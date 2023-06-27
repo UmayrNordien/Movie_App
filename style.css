@@ -48,11 +48,12 @@ body{
 
 .search-box .search-btn{
     width: 120px;
-    background-color: #ffca28;
+    background-color: #ee4cf3;
     color: #fff;
+    font-weight: 600;
     cursor: pointer;
     padding: 6px 8px;
-    border: 1px solid #ffca28;
+    border: 1px solid #11EFE6;
     border-radius: 0 0.4rem 0.4rem 0;
     transition: all 0.5s ease;
 }
@@ -60,6 +61,7 @@ body{
 .search-box .search-btn:hover{
     background-color: #11EFE6;
     border: 1px solid #11EFE6;
+    color: white;
 }
 
 .container{
@@ -100,6 +102,7 @@ body{
 }
 
 .container .card .card-content .card-btn{
+    background-color: #ee4cf3;
     color: #fff;
     cursor: pointer;
     padding: 6px 8px;
@@ -123,7 +126,7 @@ body{
 }
 
 .container .card:hover .card-content{
-    background-image: linear-gradient(180deg, rgba(51, 55, 69, 0), #ffca28 48%);
+    background-image: linear-gradient(180deg, rgba(51, 55, 69, 0), #ffca28 80%);
 }
 
 .container .card:hover .card-btn{
