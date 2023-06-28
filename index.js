@@ -5,21 +5,24 @@ const form = document.getElementById("search-form");
 const query = document.getElementById("search-input");
 const result = document.getElementById("result");
 
+//emojis to use in console.log from CodePoint
+const flame = String.fromCodePoint(0x1F525);
+
 let page = 1;
 let isSearching = false;
 
-// Fetch JSON data from url
 async function fetchData(url) {
     try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("Network response error");
-        }
-        return await response.json();
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response error");
+      }
+      console.log('%cdata fetched successfully...', 'color: purple; background: pink;');
+      return await response.json();
     } catch (error) {
-        return null;
+      return null;
     }
-}
+  }
 
 // Fetch and show results based on url
 async function fetchAndShowResult(url) {
@@ -27,6 +30,7 @@ async function fetchAndShowResult(url) {
     if (data && data.results) {
         showResults(data.results);
     }
+    console.log('%cdata fetched and displayed successfully ' + flame, 'color: purple; background: pink;');
 }
 
 // Create movie card html template
@@ -61,9 +65,11 @@ function createMovieCard(movie) {
     return cardTemplate;
 }
 
+
 // Clear result element for search
 function clearResults() {
     result.innerHTML = "";
+    console.log('%cresults cleared upon page initialisation', 'color: white; background: blue;');
 }
 
 // Show results in page
@@ -88,8 +94,9 @@ function detectEnd() {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 20) {
         loadMoreResults();
+        console.log('%cmore rusults loaded', 'color: green');
     }
-}
+} 
 
 // Handle search
 async function handleSearch(e) {
@@ -112,6 +119,7 @@ function clearSearch() {
     document.body.classList.remove('searching');
     clearResults();
     init();
+    console.log('%csearch results cleared', 'color: green');
 }
 
 // Add event listener to "Go Back" button
@@ -138,7 +146,8 @@ async function init() {
 
 init(); // Call the init function to initialize the page
 
-//Back to top
+
+//Back to top button
 const backToTopButton = document.querySelector(".back-to-top-btn");
 
 window.addEventListener("scroll", () => {
@@ -151,4 +160,5 @@ window.addEventListener("scroll", () => {
 
 backToTopButton.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
+  console.log('%c--back to top button clicked', 'color: purple;');
 });
